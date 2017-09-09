@@ -1,10 +1,20 @@
-export default class Bigsight extends enchant.Sprite {
+export default class Bigsight extends enchant.Group {
   constructor() {
-    super(800, 619);
-    this.x = 200;
-    this.y = 0;
-    this.image = enchant.Core.instance.assets['img/building_bigsight.png'];
-    this.scale(0.5, 0.5);
+    super()
+    let bigsight = new Sprite(800, 619);
+    bigsight.x = 200;
+    bigsight.y = 0;
+    bigsight.image = enchant.Core.instance.assets['img/building_bigsight.png'];
+    bigsight.scale(0.5, 0.5);
+    this.addChild(bigsight);
+
+    let logo = new Sprite(135, 41);
+    logo.x = 540;
+    logo.y = 170;
+    logo.image = enchant.Core.instance.assets['img/cascket_logo.png'];
+    // logo.scale(0.5, 0.5);
+    this.addChild(logo);
+
     enchant.Core.instance.rootScene.addEventListener('enterframe', () => { this.enterframe(); });
   }
 

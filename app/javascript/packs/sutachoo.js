@@ -24,7 +24,7 @@ export default class Suta extends enchant.Group {
     this.originX = 70;
     this.originY = 150;
     this.moving = false;
-    this.x = 250 + x;
+    this.x = -270 + x;
     this.y = 520 + (x % 100);
 
     this.udon.scaleX = 0.7;
@@ -48,14 +48,14 @@ export default class Suta extends enchant.Group {
       .then(() => {
         let sound = enchant.Core.instance.assets['img/choo.mp3'].clone();
         sound.play();
-        sound.volume -= 0.8;
+        sound.volume = 0.4;
       })
       .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
       .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
       .then(() => {
         let sound = enchant.Core.instance.assets['img/choo.mp3'].clone();
         sound.play();
-        sound.volume -= 0.8;
+        sound.volume = 0.4;
       })
       .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
   }
@@ -144,8 +144,8 @@ export default class Suta extends enchant.Group {
       this.moving = true;
 
       let sound = enchant.Core.instance.assets['img/Quiz-Results.mp3'].clone();
-      // sound.volume -= 0.5;
       sound.play();
+      sound.volume = 0.5;
 
       this.tl
         .tween({ scaleX: this.scaleX * -1, time: 6, easing: enchant.Easing.CUBIC_OUT })

@@ -12,6 +12,7 @@ core.preload('img/stamp9.png');
 core.preload('img/tengoku.jpg');
 core.preload('img/building_bigsight.png');
 core.preload('img/bg_ground_flower.png');
+core.preload('img/cascket_logo.png');
 
 core.preload('img/suta/suta_body.png');
 core.preload('img/suta/suta_left_foot.png');
