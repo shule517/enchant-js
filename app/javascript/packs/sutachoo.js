@@ -19,47 +19,58 @@ export default class Suta extends enchant.Group {
     this.addChild(this.left_foot);
     this.addChild(this.tail);
 
+    this.originX = 70;
+    this.originY = 150;
     this.moving = false;
-
-    let speed = 27.0;
-
-    this.right_foot.tl
-      .rotateTo(40, 13, enchant.Easing.CUBIC_EASEOUT)
-      .delay(2)
-      .rotateTo(20, 13, enchant.Easing.CUBIC_EASEOUT)
-      .delay(15)
-      .loop();
-
-    let move = 13;
-    this.left_foot.tl
-      .rotateTo(move*2, 13, enchant.Easing.CUBIC_EASEOUT)
-      .delay(2)
-      .rotateTo(move, 13, enchant.Easing.CUBIC_EASEOUT)
-      .delay(15)
-      .loop();
-
     this.x = 250 + x;
     this.y = 520;
 
+    this.speed = 2 + this.rand(10) * 0.1;
+    this.rootScene.addEventListener('enterframe', () => { this.enterframe(); });
+
+    this.rootScene.addEventListener('abuttondown', () => {
+      console.log('abuttondown');
+
+      this.tl
+        .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+        .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+        .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+        .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+    });
+  }
+
+  waling() {
+    if (this.moving) { return; }
+    this.moving = true;
+    let speed = 27.0;
+
+    this.right_foot.tl
+      .rotateTo(-50, 13, enchant.Easing.CUBIC_EASEOUT)
+      .delay(2)
+      .rotateTo(20, 13, enchant.Easing.CUBIC_EASEOUT)
+      .delay(15)
+
+    this.left_foot.tl
+      .rotateTo(-56, 13, enchant.Easing.CUBIC_EASEOUT)
+      .delay(2)
+      .rotateTo(13, 13, enchant.Easing.CUBIC_EASEOUT)
+      .delay(15)
+
     this.tail.tl
-      .rotateTo(-60, 13, enchant.Easing.CUBIC_EASEOUT)
+      .rotateTo(-100, 13, enchant.Easing.CUBIC_EASEOUT)
       .delay(2)
       .rotateTo(-20, 13, enchant.Easing.CUBIC_EASEOUT)
       .delay(15)
-      .loop();
-
-    this.originX = 70;
-    this.originY = 150;
+      .then(() => { this.moving = false; })
 
     this.tl
-      .tween({ y: this.y - 10, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
+      // .tween({ y: this.y - 5, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
+      .tween({ y: this.y - 20, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
       .delay(2)
-      .tween({ y: this.y + 10, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
+      // .tween({ y: this.y + 5, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
+      .tween({ y: this.y, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
       .delay(15)
-      .loop();
-
-    this.speed = 2 + this.rand(10) * 0.1;
-    this.rootScene.addEventListener('enterframe', () => { this.enterframe(); });
+      // .delay(43)
   }
 
   createSprite(x, y, width, height, originX, originY, imagePath) {
@@ -81,21 +92,29 @@ export default class Suta extends enchant.Group {
     if (this.input.left) {
       if (!this.moving && this.scaleX < 0) {
         this.moving = true;
-        this.scaleX *= -1;
-        this.moving = false;
+        this.tl
+          .tween({ scaleX: this.scaleX * -1, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
+          .then( () => { this.moving = false; })
       }
+      this.waling();
       this.x -= this.speed;
     } else if (this.input.right) {
       if (!this.moving && this.scaleX > 0) {
         this.moving = true;
-        this.scaleX *= -1;
-        this.moving = false;
+        this.tl
+          .tween({ scaleX: this.scaleX * -1, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
+          .then( () => { this.moving = false; })
       }
+      this.waling();
       this.x += this.speed;
     } else if (this.input.up) {
     } else if (this.input.down) {
-    } else if (this.input.a) {
-      if (this.moving) { return; }
+    }/* else if (this.input.a) {
+      if (this.moving) {
+        return;
+      }
+
+      console.log('jump!');
       this.moving = true;
 
       let beforeX = this.x;
@@ -104,11 +123,12 @@ export default class Suta extends enchant.Group {
       let beforeScaleY = this.scaleY;
 
       this.tl
-      .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .tween({ y: beforeY, scaleX: beforeScaleX, scaleY: beforeScaleY, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .tween({ y: beforeY, scaleX: beforeScaleX, scaleY: beforeScaleY, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .exec(() => {this.moving = false;});
+        .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+        .tween({ y: beforeY, scaleX: beforeScaleX, scaleY: beforeScaleY, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+        .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+        .tween({ y: beforeY, scaleX: beforeScaleX, scaleY: beforeScaleY, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+        .then(() => { this.moving = false; });
     }
+      */
   }
 }
