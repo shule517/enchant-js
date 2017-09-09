@@ -1,10 +1,22 @@
-export default class Map extends enchant.Sprite {
+export default class Map extends enchant.Group {
   constructor() {
-    super(1920, 1080);
-    this.x = -200;
-    this.y = -150;
-    this.image = enchant.Core.instance.assets['img/tengoku.jpg'];
-    this.scale(0.7, 0.7);
+    super();
+    let bigsight = new Sprite(1920, 980);
+    bigsight.x = -200;
+    bigsight.y = -150;
+    bigsight.image = enchant.Core.instance.assets['img/tengoku.jpg'];
+    bigsight.scale(0.7, 0.7);
+    this.addChild(bigsight);
+
+    for (let i = 0; i < 5; i++) {
+      let flower = new Sprite(600, 160);
+      flower.x = i * 580;
+      flower.y = 550;
+      flower.image = enchant.Core.instance.assets['img/bg_ground_flower.png'];
+      // flower.scale(0.7, 0.7);
+      this.addChild(flower);
+    }
+
     enchant.Core.instance.rootScene.addEventListener('enterframe', () => { this.enterframe(); });
   }
 

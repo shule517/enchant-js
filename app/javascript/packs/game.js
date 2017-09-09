@@ -9,6 +9,7 @@ core.keybind(90, 'a');
 core.preload('img/stamp1.png');
 core.preload('img/tengoku.jpg');
 core.preload('img/building_bigsight.png');
+core.preload('img/bg_ground_flower.png');
 core.fps = 60;
 
 core.onload = () => {
