@@ -10,15 +10,26 @@ core.preload('img/stamp1.png');
 core.preload('img/tengoku.jpg');
 core.preload('img/building_bigsight.png');
 core.preload('img/bg_ground_flower.png');
+
+core.preload('img/suta/suta_body.png');
+core.preload('img/suta/suta_left_foot.png');
+core.preload('img/suta/suta_right_foot.png');
+core.preload('img/suta/suta_tail.png');
+
 core.fps = 60;
 
 core.onload = () => {
   core.rootScene.addChild(new Map);
   core.rootScene.addChild(new Bigsight);
 
-  let d = 80;
-  for (let i = 0; i < 5; i++) {
-    core.rootScene.addChild(new Sutachoo(250, 250, d*i));
+  // core.rootScene.addChild(new Sutachoo(250, 250, 0));
+
+  let d = 160;
+  for (let i = 0; i < 15; i++) {
+    let suta = new Sutachoo(250, 250, d*i);
+    suta.scaleX = -0.6;
+    suta.scaleY = 0.6;
+    core.rootScene.addChild(suta);
   }
   // core.rootScene.addChild(new Sutachoo(250, 250, 100));
   // core.rootScene.addChild(new Sutachoo(250, 250, 150));
