@@ -19,6 +19,7 @@ core.preload('img/suta/suta_right_foot.png');
 core.preload('img/suta/suta_tail.png');
 
 core.preload('img/Quiz-Results.mp3');
+core.preload('img/choo.mp3');
 
 
 

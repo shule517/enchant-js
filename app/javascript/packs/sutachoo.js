@@ -35,14 +35,29 @@ export default class Suta extends enchant.Group {
     this.rootScene.addEventListener('enterframe', () => { this.enterframe(); });
 
     this.rootScene.addEventListener('abuttondown', () => {
-      console.log('abuttondown');
-
-      this.tl
-        .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+      this.oxox();
     });
+    this.addEventListener('touchstart', () => {
+      this.oxox();
+    });
+  }
+
+  oxox() {
+    this.tl
+      .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+      .then(() => {
+        let sound = enchant.Core.instance.assets['img/choo.mp3'].clone();
+        sound.play();
+        sound.volume -= 0.8;
+      })
+      .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+      .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+      .then(() => {
+        let sound = enchant.Core.instance.assets['img/choo.mp3'].clone();
+        sound.play();
+        sound.volume -= 0.8;
+      })
+      .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
   }
 
   waling() {
@@ -69,11 +84,19 @@ export default class Suta extends enchant.Group {
       .delay(15)
       .then(() => { this.moving = false; })
 
-    this.tl
-      .tween({ y: this.y - 20, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
-      .delay(2)
-      .tween({ y: this.y, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
-      .delay(15)
+    if (this.scaleX < 0) {
+      this.tl
+        .tween({ rotation: 8 * 1, y: this.y - 30, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
+        .delay(2)
+        .tween({ rotation: 0, y: this.y,      time: 13, easing: enchant.Easing.QUINT_EASEOUT })
+        .delay(15)
+    } else {
+      this.tl
+        .tween({ rotation: 8 * -1, y: this.y - 30, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
+        .delay(2)
+        .tween({ rotation: 0, y: this.y,      time: 13, easing: enchant.Easing.QUINT_EASEOUT })
+        .delay(15)
+    }
   }
 
   createSprite(x, y, width, height, originX, originY, imagePath) {
@@ -120,57 +143,56 @@ export default class Suta extends enchant.Group {
       if (this.moving) { return; }
       this.moving = true;
 
-      var sound = enchant.Core.instance.assets['img/Quiz-Results.mp3'].clone();
+      let sound = enchant.Core.instance.assets['img/Quiz-Results.mp3'].clone();
+      // sound.volume -= 0.5;
       sound.play();
 
       this.tl
-        .tween({ scaleX: this.scaleX * -1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .tween({ scaleX: this.scaleX, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .tween({ scaleX: this.scaleX * -1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .tween({ scaleX: this.scaleX, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .tween({ scaleX: this.scaleX * -1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .tween({ scaleX: this.scaleX, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .tween({ scaleX: this.scaleX * -1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .tween({ scaleX: this.scaleX, time: 6, easing: enchant.Easing.CUBIC_OUT })
-
-        .tween({ scaleX: this.scaleX * -1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .and()
-        .tween({ scaleY: this.scaleY * 1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-
-        .tween({ scaleX: this.scaleX, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .and()
-        .tween({ scaleY: this.scaleY * 1, time: 6, easing: enchant.Easing.CUBIC_OUT })
-
-        .tween({ scaleX: this.scaleX * -1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .and()
-        .tween({ scaleY: this.scaleY * 1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-
-        .tween({ scaleX: this.scaleX, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .and()
-        .tween({ scaleY: this.scaleY * 1, time: 6, easing: enchant.Easing.CUBIC_OUT })
-
-        .tween({ scaleX: this.scaleX * -1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .and()
-        .tween({ scaleY: this.scaleY * 1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-
-        .tween({ scaleX: this.scaleX, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .and()
-        .tween({ scaleY: this.scaleY * 1, time: 6, easing: enchant.Easing.CUBIC_OUT })
-
-        .tween({ scaleX: this.scaleX * -1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .and()
-        .tween({ scaleY: this.scaleY * 1.5, time: 6, easing: enchant.Easing.CUBIC_OUT })
-
-        .tween({ scaleX: this.scaleX, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .and()
-        .tween({ scaleY: this.scaleY * 1, time: 6, easing: enchant.Easing.CUBIC_OUT })
-
         .tween({ scaleX: this.scaleX * -1, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .tween({ scaleX: this.scaleX, time: 6, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  1, time: 6, easing: enchant.Easing.CUBIC_OUT })
         .tween({ scaleX: this.scaleX * -1, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        .tween({ scaleX: this.scaleX*1.3, scaleY: this.scaleY*1.3, time: 6, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  1, time: 6, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -1, time: 6, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  1, time: 6, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -1, time: 6, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  1, time: 6, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -1, time: 6, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  1, time: 6, easing: enchant.Easing.CUBIC_OUT })
+        .then(() => {
+          // this.tail.rotate(this.rand(360));
+          this.tail.scaleX = 3;
+          // this.tail.scaleY = 2;
+        })
+        .tween({ scaleX: this.scaleX * -0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -0.6, time: 3, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX *  0.6, time: 2, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * -0.6, time: 1, easing: enchant.Easing.CUBIC_OUT })
+        .tween({ scaleX: this.scaleX * 1.3, scaleY: this.scaleY*1.3, time: 6, easing: enchant.Easing.CUBIC_OUT })
+        .then(() => {
+          this.tail.rotate(this.rand(360));
+          this.tail.scaleX = 2;
+          this.tail.scaleY = 2;
+        })
         // .then(() => { this.udon.opacity = 1; })
-        .delay(30)
+        .delay(50)
+        .then(() => {
+          this.tail.rotation = -20;
+          this.tail.scaleX = 1;
+          this.tail.scaleY = 1;
+        })
         .tween({ scaleX: this.scaleX, scaleY: this.scaleY, time: 6, easing: enchant.Easing.CUBIC_OUT })
         // .then(() => { this.udon.opacity = 0; })
         .then(() => { this.moving = false; })
