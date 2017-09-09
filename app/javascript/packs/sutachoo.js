@@ -59,7 +59,7 @@ export default class Suta extends enchant.Group {
       .loop();
 
     this.speed = 2 + this.rand(10) * 0.1;
-    rootScene.addEventListener('enterframe', () => { this.enterframe(); });
+    this.rootScene.addEventListener('enterframe', () => { this.enterframe(); });
   }
 
   createSprite(x, y, width, height, originX, originY, imagePath) {
