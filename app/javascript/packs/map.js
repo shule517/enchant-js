@@ -9,12 +9,14 @@ export default class Map extends enchant.Group {
     this.addChild(bigsight);
 
     for (let i = 0; i < 5; i++) {
-      let flower = new Sprite(600, 160);
-      flower.x = i * 580;
-      flower.y = 550;
-      flower.image = enchant.Core.instance.assets['img/bg_ground_flower.png'];
-      // flower.scale(0.7, 0.7);
-      this.addChild(flower);
+      for (let j = 0; j < 2; j++) {
+        let flower = new Sprite(600, 160);
+        flower.x = i * 580;
+        flower.y = 550 + j*100;
+        flower.image = enchant.Core.instance.assets['img/bg_ground_flower.png'];
+        // flower.scale(0.7, 0.7);
+        this.addChild(flower);
+      }
     }
 
     enchant.Core.instance.rootScene.addEventListener('enterframe', () => { this.enterframe(); });
