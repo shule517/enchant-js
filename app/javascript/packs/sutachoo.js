@@ -186,7 +186,11 @@ export default class Suta extends enchant.Group {
           this.tail.scaleX = 2;
           this.tail.scaleY = 2;
         })
-        // .then(() => { this.udon.opacity = 1; })
+        .then(() => {
+          if (this.rand(10) == 0) {
+            this.udon.opacity = 1;
+          }
+        })
         .delay(50)
         .then(() => {
           this.tail.rotation = -20;
@@ -194,7 +198,7 @@ export default class Suta extends enchant.Group {
           this.tail.scaleY = 1;
         })
         .tween({ scaleX: this.scaleX, scaleY: this.scaleY, time: 6, easing: enchant.Easing.CUBIC_OUT })
-        // .then(() => { this.udon.opacity = 0; })
+        .then(() => { this.udon.opacity = 0; })
         .then(() => { this.moving = false; })
     }
      /* else if (this.input.a) {
