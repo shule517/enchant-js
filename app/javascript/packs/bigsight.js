@@ -15,7 +15,7 @@ export default class Bigsight extends enchant.Group {
     // logo.scale(0.5, 0.5);
     this.addChild(logo);
 
-    enchant.Core.instance.currentScene.addEventListener('enterframe', () => { this.enterframe(); });
+    this.addEventListener('enterframe', () => { this.enterframe(); });
   }
 
   enterframe() {

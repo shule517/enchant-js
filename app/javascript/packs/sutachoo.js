@@ -32,11 +32,8 @@ export default class Suta extends enchant.Group {
     this.udon.opacity = 0;
 
     this.speed = 2 + this.rand(10) * 0.1;
-    this.rootScene.addEventListener('enterframe', () => { this.enterframe(); });
 
-    this.rootScene.addEventListener('abuttondown', () => {
-      this.oxox();
-    });
+    this.addEventListener('enterframe', () => { this.enterframe(); });
     this.addEventListener('touchstart', () => {
       this.oxox();
     });
@@ -200,27 +197,11 @@ export default class Suta extends enchant.Group {
         .tween({ scaleX: this.scaleX, scaleY: this.scaleY, time: 6, easing: enchant.Easing.CUBIC_OUT })
         .then(() => { this.udon.opacity = 0; })
         .then(() => { this.moving = false; })
-    }
-     /* else if (this.input.a) {
+    } else if (this.input.a) {
       if (this.moving) {
         return;
       }
-
-      console.log('jump!');
-      this.moving = true;
-
-      let beforeX = this.x;
-      let beforeY = this.y;
-      let beforeScaleX = this.scaleX;
-      let beforeScaleY = this.scaleY;
-
-      this.tl
-        .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .tween({ y: beforeY, scaleX: beforeScaleX, scaleY: beforeScaleY, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .tween({ y: beforeY, scaleX: beforeScaleX, scaleY: beforeScaleY, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .then(() => { this.moving = false; });
+      this.oxox();
     }
-      */
   }
 }
