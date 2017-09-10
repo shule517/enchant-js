@@ -1,6 +1,6 @@
 export default class Bigsight extends enchant.Group {
   constructor() {
-    super()
+    super();
     let bigsight = new Sprite(800, 619);
     bigsight.x = 200;
     bigsight.y = 0;
