@@ -1,3 +1,5 @@
+import CascketScene from './CascketScene';
+
 export default class Suta extends enchant.Group {
   get input() {
     return enchant.Core.instance.input;
@@ -54,7 +56,7 @@ export default class Suta extends enchant.Group {
         sound.play();
         sound.volume = 0.4;
       })
-      .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+      .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT });
   }
 
   waling() {
@@ -66,33 +68,33 @@ export default class Suta extends enchant.Group {
       .rotateTo(-50, 13, enchant.Easing.CUBIC_EASEOUT)
       .delay(2)
       .rotateTo(20, 13, enchant.Easing.CUBIC_EASEOUT)
-      .delay(15)
+      .delay(15);
 
     this.left_foot.tl
       .rotateTo(-56, 13, enchant.Easing.CUBIC_EASEOUT)
       .delay(2)
       .rotateTo(13, 13, enchant.Easing.CUBIC_EASEOUT)
-      .delay(15)
+      .delay(15);
 
     this.tail.tl
       .rotateTo(-100, 13, enchant.Easing.CUBIC_EASEOUT)
       .delay(2)
       .rotateTo(-20, 13, enchant.Easing.CUBIC_EASEOUT)
       .delay(15)
-      .then(() => { this.moving = false; })
+      .then(() => { this.moving = false; });
 
     if (this.scaleX < 0) {
       this.tl
         .tween({ rotation: 8 * 1, y: this.y - 30, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
         .delay(2)
         .tween({ rotation: 0, y: this.y,      time: 13, easing: enchant.Easing.QUINT_EASEOUT })
-        .delay(15)
+        .delay(15);
     } else {
       this.tl
         .tween({ rotation: 8 * -1, y: this.y - 30, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
         .delay(2)
         .tween({ rotation: 0, y: this.y,      time: 13, easing: enchant.Easing.QUINT_EASEOUT })
-        .delay(15)
+        .delay(15);
     }
   }
 
@@ -108,7 +110,7 @@ export default class Suta extends enchant.Group {
 
   rand(n) {
     //3を与えると0,1，2，3のどれかが帰ってくる
-    return Math.floor(Math.random() * (n + 1))
+    return Math.floor(Math.random() * (n + 1));
   }
 
   enterframe() {
@@ -117,7 +119,7 @@ export default class Suta extends enchant.Group {
         this.moving = true;
         this.tl
           .tween({ scaleX: this.scaleX * -1, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
-          .then( () => { this.moving = false; })
+          .then( () => { this.moving = false; });
       }
       this.waling();
       this.x -= this.speed;
@@ -126,10 +128,16 @@ export default class Suta extends enchant.Group {
         this.moving = true;
         this.tl
           .tween({ scaleX: this.scaleX * -1, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
-          .then( () => { this.moving = false; })
+          .then( () => { this.moving = false; });
       }
       this.waling();
       this.x += this.speed;
+
+      if (this.x > 400) {
+        let scene = new CascketScene();
+        enchant.Core.instance.replaceScene(scene);
+      }
+
     } else if (this.input.up) {
       this.waling();
       this.y -= this.speed / 2;
@@ -196,7 +204,7 @@ export default class Suta extends enchant.Group {
         })
         .tween({ scaleX: this.scaleX, scaleY: this.scaleY, time: 6, easing: enchant.Easing.CUBIC_OUT })
         .then(() => { this.udon.opacity = 0; })
-        .then(() => { this.moving = false; })
+        .then(() => { this.moving = false; });
     } else if (this.input.a) {
       if (this.moving) {
         return;

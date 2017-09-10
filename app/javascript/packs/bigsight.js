@@ -12,7 +12,6 @@ export default class Bigsight extends enchant.Group {
     logo.x = 540;
     logo.y = 170;
     logo.image = enchant.Core.instance.assets['img/cascket_logo.png'];
-    // logo.scale(0.5, 0.5);
     this.addChild(logo);
 
     this.addEventListener('enterframe', () => { this.enterframe(); });
@@ -25,9 +24,7 @@ export default class Bigsight extends enchant.Group {
     } else if (enchant.Core.instance.input.right) {
       this.x += speed;
     } else if (enchant.Core.instance.input.up) {
-      // this.y -= speed;
     } else if (enchant.Core.instance.input.down) {
-      // this.y += speed;
     }
   }
 }

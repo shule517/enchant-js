@@ -35,7 +35,7 @@ export default class Suta extends enchant.Group {
         .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
         .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
         .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+        .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT });
     });
   }
 
@@ -48,29 +48,26 @@ export default class Suta extends enchant.Group {
       .rotateTo(-50, 19, enchant.Easing.CUBIC_EASEOUT)
       .delay(2)
       .rotateTo(-20, 18, enchant.Easing.CUBIC_EASEOUT)
-      .delay(2)
+      .delay(2);
 
     this.left_foot.tl
       .rotateTo(-30, 18, enchant.Easing.CUBIC_EASEOUT)
       .delay(2)
       .rotateTo(-56, 19, enchant.Easing.CUBIC_EASEOUT)
-      .delay(2)
+      .delay(2);
 
     this.tail.tl
       .rotateTo(-100, 13, enchant.Easing.CUBIC_EASEOUT)
       .delay(2)
       .rotateTo(-20, 13, enchant.Easing.CUBIC_EASEOUT)
       .delay(15)
-      .then(() => { this.moving = false; })
+      .then(() => { this.moving = false; });
 
     this.tl
-      // .tween({ y: this.y - 5, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
       .tween({ y: this.y - 4, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
       .delay(2)
-      // .tween({ y: this.y + 5, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
       .tween({ y: this.y, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
-      .delay(15)
-      // .delay(43)
+      .delay(15);
   }
 
   createSprite(x, y, width, height, originX, originY, imagePath) {
@@ -84,8 +81,8 @@ export default class Suta extends enchant.Group {
   }
 
   rand(n) {
-    //3を与えると0,1，2，3のどれかが帰ってくる
-    return Math.floor(Math.random() * (n + 1))
+    // 3を与えると0,1，2，3のどれかが帰ってくる
+    return Math.floor(Math.random() * (n + 1));
   }
 
   enterframe() {
@@ -94,7 +91,7 @@ export default class Suta extends enchant.Group {
         this.moving = true;
         this.tl
           .tween({ scaleX: this.scaleX * -1, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
-          .then( () => { this.moving = false; })
+          .then( () => { this.moving = false; });
       }
       this.waling();
       this.x -= this.speed;
@@ -103,32 +100,12 @@ export default class Suta extends enchant.Group {
         this.moving = true;
         this.tl
           .tween({ scaleX: this.scaleX * -1, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
-          .then( () => { this.moving = false; })
+          .then( () => { this.moving = false; });
       }
       this.waling();
       this.x += this.speed;
     } else if (this.input.up) {
     } else if (this.input.down) {
-    }/* else if (this.input.a) {
-      if (this.moving) {
-        return;
-      }
-
-      console.log('jump!');
-      this.moving = true;
-
-      let beforeX = this.x;
-      let beforeY = this.y;
-      let beforeScaleX = this.scaleX;
-      let beforeScaleY = this.scaleY;
-
-      this.tl
-        .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .tween({ y: beforeY, scaleX: beforeScaleX, scaleY: beforeScaleY, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .tween({ y: beforeY, scaleX: beforeScaleX, scaleY: beforeScaleY, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-        .then(() => { this.moving = false; });
     }
-      */
   }
 }

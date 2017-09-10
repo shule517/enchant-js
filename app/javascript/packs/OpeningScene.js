@@ -1,6 +1,6 @@
-import Sutachoo from './sutachoo'
-import Bigsight from './bigsight'
-import Map from './map'
+import Sutachoo from './sutachoo';
+import Bigsight from './bigsight';
+import Map from './map';
 
 export default class OpeningScene extends enchant.Scene {
   constructor() {
