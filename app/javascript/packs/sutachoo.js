@@ -4,7 +4,7 @@ export default class Suta extends enchant.Group {
   }
 
   get rootScene() {
-    return enchant.Core.instance.rootScene;
+    return enchant.Core.instance.currentScene;
   }
 
   constructor(width, height, x) {

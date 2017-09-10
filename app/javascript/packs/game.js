@@ -27,21 +27,20 @@ core.preload('img/choo.mp3');
 core.fps = 60;
 
 core.onload = () => {
-  core.rootScene.addChild(new Map);
-  core.rootScene.addChild(new Bigsight);
 
-  // core.rootScene.addChild(new Sutachoo(250, 250, 0));
+  let scene = new Scene();
+  core.pushScene(scene);
+
+  scene.addChild(new Map);
+  scene.addChild(new Bigsight);
 
   let d = 160;
   for (let i = 0; i < 15; i++) {
     let suta = new Sutachoo(250, 250, d*i);
     suta.scaleX = -0.6;
     suta.scaleY = 0.6;
-    core.rootScene.addChild(suta);
+    scene.addChild(suta);
   }
-  // core.rootScene.addChild(new Sutachoo(250, 250, 100));
-  // core.rootScene.addChild(new Sutachoo(250, 250, 150));
-  // core.rootScene.addChild(new Sutachoo(250, 250, 50));
 };
 
 core.start();

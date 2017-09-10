@@ -19,7 +19,7 @@ export default class Map extends enchant.Group {
       }
     }
 
-    enchant.Core.instance.rootScene.addEventListener('enterframe', () => { this.enterframe(); });
+    enchant.Core.instance.currentScene.addEventListener('enterframe', () => { this.enterframe(); });
   }
 
   enterframe() {
