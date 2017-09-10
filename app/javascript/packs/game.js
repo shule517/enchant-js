@@ -1,4 +1,4 @@
-import OpeningScene from './opening_scene';
+import OpeningScene from './opening_scene/opening_scene';
 
 enchant();
 

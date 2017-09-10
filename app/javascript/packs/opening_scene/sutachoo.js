@@ -1,4 +1,4 @@
-import CascketScene from './cascket_scene';
+import CascketScene from '../cascket_scene/cascket_scene';
 
 export default class Suta extends enchant.Group {
   get input() {
@@ -133,7 +133,7 @@ export default class Suta extends enchant.Group {
       this.waling();
       this.x += this.speed;
 
-      if (this.x > 400) {
+      if (this.x > 2400) {
         let scene = new CascketScene();
         enchant.Core.instance.replaceScene(scene);
       }
