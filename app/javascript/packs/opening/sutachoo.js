@@ -1,4 +1,4 @@
-import CascketScene from '../cascket_scene/cascket_scene';
+import CascketScene from '../cascket/scene';
 
 export default class Suta extends enchant.Group {
   get input() {
