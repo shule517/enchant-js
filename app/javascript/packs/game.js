@@ -4,6 +4,8 @@ import GateScene from './gate/scene';
 import HomeScene from './home/scene';
 import OpeningScene from './opening/scene';
 
+import { Foo, TestScene } from 'scene';
+
 enchant();
 
 let core = new Core(800, 800);
@@ -63,7 +65,8 @@ core.preload('img/choo.mp3');
 core.fps = 60;
 
 core.onload = () => {
-  let scene = new CascketScene(); //OpeningScene();
+  // let foo = new Foo();
+  let scene = new TestScene(); //OpeningScene();
   core.pushScene(scene);
   enchant.Core.instance.addEventListener('enterframe', () => {
     let input = enchant.Core.instance.input;
