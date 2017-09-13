@@ -1,4 +1,4 @@
-import { SutachooAnime } from 'anime';
+import { SutachooAnime, BigsightAnime } from 'anime';
 
 export default class TestScene extends enchant.Scene {
   get input() {
@@ -7,6 +7,9 @@ export default class TestScene extends enchant.Scene {
 
   constructor() {
     super();
+    // let bigsight = new BigsightAnime();
+    // this.addChild(bigsight);
+
     let suta = new SutachooAnime();
     suta.x = 100;
     suta.y = 100;

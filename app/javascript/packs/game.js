@@ -2,8 +2,8 @@ import CascketScene from './cascket/scene';
 import CosplaySquareScene from './cosplay_square/scene';
 import GateScene from './gate/scene';
 import HomeScene from './home/scene';
-import OpeningScene from './opening/scene';
-
+// import OpeningScene from './opening/scene';
+import { OpeningScene } from 'opening';
 import { Foo, TestScene } from 'scene';
 
 enchant();
@@ -66,7 +66,7 @@ core.fps = 60;
 
 core.onload = () => {
   // let foo = new Foo();
-  let scene = new TestScene(); //OpeningScene();
+  let scene = new OpeningScene(); //OpeningScene();
   core.pushScene(scene);
   enchant.Core.instance.addEventListener('enterframe', () => {
     let input = enchant.Core.instance.input;
