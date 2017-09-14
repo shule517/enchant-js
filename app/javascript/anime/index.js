@@ -1,3 +1,4 @@
 export { default as SutachooAnime } from './sutachoo_anime';
 export { default as BigsightAnime } from './bigsight_anime';
-export { default as Map } from './map';
+export { default as TengokuAnime } from './tengoku_anime';
+export { default as FlowerAnime } from './flower_anime';
