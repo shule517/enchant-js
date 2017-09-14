@@ -1,5 +1,7 @@
 import { Anime } from 'lib';
-import { TengokuAnime, FlowerAnime } from 'anime';
+import { SutachooAnime, TengokuAnime, FlowerAnime } from 'anime';
+import Sutasutachoo from './sutasutachoo';
+import MySutachoo from './mysutachoo';
 
 export default class Map extends Anime {
   constructor() {
@@ -12,6 +14,16 @@ export default class Map extends Anime {
         flower.y = 550 + j * 100;
         this.addChild(flower);
       }
+    }
+
+    
+    for (let x = 0; x < 10; x++) {
+      let suta = new Sutasutachoo();
+      suta.x = -100 + 140*x;
+      suta.y = 500 + this.rand(150);;
+      suta.tl
+        .tween({x: suta.x + 1000, time: 500});
+      this.addChild(suta);
     }
   }
 }
