@@ -15,14 +15,13 @@ export default class Map extends Anime {
         this.addChild(flower);
       }
     }
-
     
-    for (let x = 0; x < 10; x++) {
+    for (let x = 0; x < 20; x++) {
       let suta = new Sutasutachoo();
-      suta.x = -100 + 140*x;
+      suta.x = -300 + 160*x;
       suta.y = 500 + this.rand(150);;
       suta.tl
-        .tween({x: suta.x + 1000, time: 500});
+        .tween({x: suta.x + 2000, time: 1000});
       this.addChild(suta);
     }
   }

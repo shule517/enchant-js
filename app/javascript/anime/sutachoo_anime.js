@@ -29,8 +29,9 @@ export default class SutachooAnime extends Anime {
   }
 
   jakajan() {
+    if (this.moving) { return; }
     this.tl
-      .exec(() => { this.soundJakajan.play(); } )
+      .exec(() => { this.moving = true; this.soundJakajan.play(); } )
       // ぐるぐる
       .tween({ scaleX: this.scaleX * -1, time: 6, easing: enchant.Easing.CUBIC_OUT })
       .tween({ scaleX: this.scaleX *  1, time: 6, easing: enchant.Easing.CUBIC_OUT })
@@ -90,32 +91,46 @@ export default class SutachooAnime extends Anime {
   }
 
   oxox() {
+    if (this.moving) { return; }
     // おっおっ → ちゅー！ちゅー！
     this.tl
+      .exec(() => { this.moving = true; })
       .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
       .then(() => { this.soundChoo.play(); })
       .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
       .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
       .then(() => { this.soundChoo.play(); })
-      .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT });
+      .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+      .then(() => { this.moving = false; });
   }
 
   left() {
+    console.log("left this.moving:" + this.moving);
+    // if (this.moving) { return; }
     this.tl
-      .tween({ scaleX: this.scaleX, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
+      // .exec(() => { this.moving = true; })
+      .tween({ scaleX: this.scaleX * -1, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
       .delay(15);
+      // .exec(() => { this.moving = false; })
   }
 
   right() {
+    // console.log("right this.moving:" + this.moving);
+    // if (this.moving) { return; }
     this.tl
-      .tween({ scaleX: this.scaleX * -1, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
-      .delay(15);
+      .exec(() => { this.moving = true; })
+      .tween({ scaleX: this.scaleX, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
+      .delay(15)
+      .exec(() => { this.moving = false; })
   }
 
   walking() {
+    console.log("walking this.moving:" + this.moving);
+    // if (this.moving) { return; }
     if (this.scaleX < 0) {
       this.tl
         .exec(() => {
+          this.moving = true;
           this.right_foot.tl
             .rotateTo(-50, 13, enchant.Easing.CUBIC_EASEOUT)
             .delay(2)
@@ -143,10 +158,12 @@ export default class SutachooAnime extends Anime {
         .tween({ rotation: 8 * 1, y: this.y - 30, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
         .delay(2)
         .tween({ rotation: 0,     y: this.y,      time: 13, easing: enchant.Easing.QUINT_EASEOUT })
-        .delay(15);
+        .delay(15)
+        .exec(() => { this.moving = false; });
     } else {
       this.tl
         .exec(() => {
+          this.moving = true;
           this.right_foot.tl
             .rotateTo(-50, 13, enchant.Easing.CUBIC_EASEOUT)
             .delay(2)
@@ -174,7 +191,8 @@ export default class SutachooAnime extends Anime {
         .tween({ rotation: 8 * -1, y: this.y - 30, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
         .delay(2)
         .tween({ rotation: 0,      y: this.y,      time: 13, easing: enchant.Easing.QUINT_EASEOUT })
-        .delay(15);
+        .delay(15)
+        .exec(() => { this.moving = false; });
     }
   }
 }

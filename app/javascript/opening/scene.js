@@ -23,24 +23,61 @@ export default class OpeningScene extends enchant.Scene {
     this.addChild(bigsight);
 
     let me = new MySutachoo();
-    me.x = 100;
-    me.y = 540;
-    map.addChild(me);
+    me.x = 370;
+    me.y = 500;
+    this.addChild(me);
 
-    this.addEventListener('touchstart', (e) => {
-      console.log(e.localX + "," + e.localY);
-      let flowerSpeed = 1.2;
-      let tengokuSpeed = 0.7;
-      let bigsightSpeed = 0.5;
+    map.addEventListener('touchstart', (e) => {
+      // if (me.moving) { return; }
+      console.log("touchstart:" + e.localX + "," + e.localY);
+      let flowerSpeed = 0.8;
+      let tengokuSpeed = 0.6;
+      let bigsightSpeed = 0.4;
       let diffX = me.x - e.localX;
+      // let diffY = 600 - e.localY;
+      let time = Math.abs(diffX)/2;
 
-      me.tl
-        .tween({x: e.localX, time: 100})
+      // me.tl.tween({y: e.localY - 150, time: time});
+      let isRightMove = (diffX < 0)
+      console.log("isRightMove:" + isRightMove);
+      console.log("isRightDir:" + me.isRightDir());
+
+      if (isRightMove && !me.isRightDir()) {
+        console.log("right");
+        me.tl
+        .exec(() => { me.left(); })
+        .tween({y: e.localY - 150, time: time})
         .and()
-        .tween({y: e.localY, time: 100});
-      bigsight.tl.tween({x: bigsight.x + diffX*bigsightSpeed, time: 100});
-      tengoku.tl.tween({x: tengoku.x + diffX*tengokuSpeed, time: 100});
-      map.tl.tween({x: map.x + diffX*flowerSpeed, time: 100});
+        .exec(() => {
+          for (let i = 0; i < (time/43); i++) {
+            me.walking();
+          }
+        });
+      } else if (!isRightMove && me.isRightDir()) {
+        console.log("left");
+        me.tl
+          .exec(() => { me.left(); })
+          .tween({y: e.localY - 150, time: time})
+          .and()
+          .exec(() => {
+            for (let i = 0; i < (time/43); i++) {
+              me.walking();
+            }
+          });
+      } else {
+        me.tl.tween({y: e.localY - 150, time: time});
+        for (let i = 0; i < (time/43); i++) {
+          me.walking();
+        }
+      }
+
+      // me.tl
+      //   .tween({x: e.localX - 45, time: time})
+      //   .and()
+      //   .tween({y: e.localY - 120, time: time});
+      bigsight.tl.tween({x: bigsight.x + diffX * bigsightSpeed, time: time});
+      tengoku.tl.tween({x: tengoku.x + diffX * tengokuSpeed, time: time});
+      map.tl.tween({x: map.x + diffX * flowerSpeed, time: time});
       // bigsight.tl.tween({x : map.x + diffX, time: (diffX / bigsightSpeed)});
       // tengoku.tl.tween({x: map.x + diffX, time: (diffX / tengokuSpeed)});
       // map.tl.tween({x: map.x + diffX, time: (diffX / flowerSpeed)});

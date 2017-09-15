@@ -42,12 +42,35 @@ export default class MySutachoo extends Anime {
     // sutachoo.walking();
     // sutachoo.walking();
     // sutachoo.walking();
-    // sutachoo.walking();
+    // this.sutachoo.walking();
+    // this.sutachoo.left();
+    // this.sutachoo.left();
+    // this.sutachoo.left();
+    // this.sutachoo.right();
+    // this.sutachoo.left();
+    // this.sutachoo.right();
+  }
+
+  isRightDir() {
+    return (this.sutachoo.scaleX < 0);
+  }
+
+  walking() {
+    this.sutachoo.walking();
+  }
+
+  left() {
+    this.sutachoo.left();
+  }
+
+  right() {
+    this.sutachoo.right();
   }
 
   oxox() {
     this.sutachoo.oxox();
   }
+
   jakajan() {
     this.sutachoo.jakajan();
   }
