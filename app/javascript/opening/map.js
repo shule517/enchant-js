@@ -16,12 +16,12 @@ export default class Map extends Anime {
       }
     }
     
-    for (let x = 0; x < 20; x++) {
+    for (let x = 0; x < 10; x++) {
       let suta = new Sutasutachoo();
-      suta.x = -300 + 160*x;
+      suta.x = -100 + 160*x;
       suta.y = 500 + this.rand(150);;
       suta.tl
-        .tween({x: suta.x + 2000, time: 1000});
+        .tween({x: suta.x + 3000, time: 1200});
       this.addChild(suta);
     }
   }

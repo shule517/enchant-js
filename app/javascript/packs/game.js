@@ -71,8 +71,13 @@ core.loadingScene = new LoadingScene();
 core.onload = () => {
   let scene = new OpeningScene(); //OpeningScene();
   core.pushScene(scene);
+  scene.addEventListener('touchstart', (e) => {
+    console.log("touchstart");
+    core.replaceScene(new CascketScene());
+  });
   core.addEventListener('enterframe', () => {
     let input = core.input;
+
     if (input.q) {
       console.log('q');
       core.replaceScene(new CascketScene());
