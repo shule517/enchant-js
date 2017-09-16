@@ -55,7 +55,7 @@ export default class LoadingScene extends enchant.Scene {
 
   createLabel(x, y, text) {
     let label = new Label(text);
-    label.font = "bold 45px Arial";
+    label.font = "bold 45px MarugameFont";
     // label.font = "bold 45px MarugameFont";
     label.color = "black";
     label.x = x;	// X座標

@@ -27,8 +27,9 @@ export default class SutaWait extends Anime {
     // });
 
     sutachoo.getBody().addEventListener('touchstart', (e) => {
+    // sutachoo.addEventListener('touchstart', (e) => {
       console.log("touchstart:" + e.localX + " , " + e.localY);
-      // sutachoo.scaleX = 3;
+      sutachoo.scaleX = 3;
       // sutachoo.oxox();
     });
   }
