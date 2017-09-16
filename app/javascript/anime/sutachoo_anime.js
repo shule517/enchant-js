@@ -121,11 +121,11 @@ export default class SutachooAnime extends Anime {
       .exec(() => { this.moving = true; })
       .tween({ scaleX: this.scaleX, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
       .delay(15)
-      .exec(() => { this.moving = false; })
+      .exec(() => { this.moving = false; });
   }
 
   walking() {
-    console.log("walking this.moving:" + this.moving);
+    // console.log("walking this.moving:" + this.moving);
     // if (this.moving) { return; }
     if (this.scaleX < 0) {
       this.tl

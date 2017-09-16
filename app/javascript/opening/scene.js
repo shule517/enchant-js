@@ -27,18 +27,26 @@ export default class OpeningScene extends enchant.Scene {
     me.y = 500;
     this.addChild(me);
 
+    map.addEventListener('touchmove', (e) => {
+      console.log("touchmove:" + e.localX + "," + e.localY);
+    });
+
     map.addEventListener('touchstart', (e) => {
       // if (me.moving) { return; }
       console.log("touchstart:" + e.localX + "," + e.localY);
       let flowerSpeed = 0.8;
       let tengokuSpeed = 0.6;
       let bigsightSpeed = 0.4;
-      let diffX = me.x - e.localX;
+      let diffX = map.x - e.localX;
       // let diffY = 600 - e.localY;
       let time = Math.abs(diffX)/2;
 
+      console.log("map.x : " + map.x);
+      console.log("e.localX : " + e.localX);
+      console.log("map.x - e.localX : " + map.x - e.localX);
+      
       // me.tl.tween({y: e.localY - 150, time: time});
-      let isRightMove = (diffX < 0)
+      let isRightMove = (diffX < 0);
       console.log("isRightMove:" + isRightMove);
       console.log("isRightDir:" + me.isRightDir());
 
@@ -70,6 +78,8 @@ export default class OpeningScene extends enchant.Scene {
           me.walking();
         }
       }
+
+      console.log("diffX:" + diffX);
 
       // me.tl
       //   .tween({x: e.localX - 45, time: time})

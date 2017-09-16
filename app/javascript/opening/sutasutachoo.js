@@ -8,7 +8,7 @@ export default class Sutasutachoo extends Anime {
     sutachoo.scaleX = -0.7;
     sutachoo.scaleY = 0.7;
     this.addChild(sutachoo);
-    
+        
     for (let i = 0; i < 100; i++) {
       sutachoo.walking();
     }
