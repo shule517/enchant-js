@@ -31,7 +31,7 @@ export default class LoadingScene extends enchant.Scene {
         label.x = loadingSuta.x + 30;
       }
     });
-      
+
     this.addEventListener('progress', (e) => {
       let imageKey = "img/loading_suta.png";
       if (core.assets[imageKey] != undefined) {

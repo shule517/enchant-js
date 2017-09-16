@@ -90,6 +90,15 @@ export default class SutachooAnime extends Anime {
       .then(() => { this.moving = false; });
   }
 
+  rotateTail(rotate){
+    this.tail.rotation = rotate;
+  }
+
+  scaleTail(scaleX, scaleY) {
+    this.tail.scaleX = scaleX;
+    this.tail.scaleY = scaleY;
+  }
+
   oxox() {
     if (this.moving) { return; }
     // おっおっ → ちゅー！ちゅー！

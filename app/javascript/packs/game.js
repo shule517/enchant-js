@@ -1,10 +1,11 @@
-import CascketScene from './cascket/scene';
+import CascketScene2 from './cascket/scene';
 import CosplaySquareScene from './cosplay_square/scene';
 import GateScene from './gate/scene';
 import HomeScene from './home/scene';
 import { OpeningScene } from 'opening';
 import { LoadingScene } from 'loading';
 import { Foo, TestScene } from 'scene';
+import { CascketScene } from 'cascket';
 
 enchant();
 
@@ -80,10 +81,10 @@ core.onload = () => {
 
     if (input.q) {
       console.log('q');
-      core.replaceScene(new CascketScene());
+      core.replaceScene(new CascketScene2());
     } else if (input.w) {
       console.log('w');
-      core.replaceScene(new CosplaySquareScene());
+      core.replaceScene(new CascketScene());
     } else if (input.e) {
       console.log('e');
       core.replaceScene(new GateScene());
