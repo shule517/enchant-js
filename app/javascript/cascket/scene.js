@@ -13,9 +13,9 @@ export default class CascketScene extends enchant.Scene {
       console.log(e.localX + " , " + e.localY);
     });
 
-    let suta = new MySuta();
-    suta.x = 400;
-    suta.y = 400;
-    this.addChild(suta);
+    // let suta = new MySuta();
+    // suta.x = 400;
+    // suta.y = 400;
+    // this.addChild(suta);
   }
 }

@@ -90,6 +90,10 @@ export default class SutachooAnime extends Anime {
       .then(() => { this.moving = false; });
   }
 
+  getBody() {
+    return this.body;
+  }
+
   rotateTail(rotate){
     this.tail.rotation = rotate;
   }

@@ -20,5 +20,16 @@ export default class SutaWait extends Anime {
     .delay(140 + this.rand(400))
     .tween({ scaleX: sutachoo.scaleX * 1, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
     .loop();
+
+    // sutachoo.addEventListener('touchstart', (e) => {
+    //   console.log("touchstart:" + e.localX + " , " + e.localY);
+    //   sutachoo.scaleX = 3;
+    // });
+
+    sutachoo.getBody().addEventListener('touchstart', (e) => {
+      console.log("touchstart:" + e.localX + " , " + e.localY);
+      // sutachoo.scaleX = 3;
+      // sutachoo.oxox();
+    });
   }
 }
