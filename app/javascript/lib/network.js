@@ -1,6 +1,6 @@
 export default class Network {
-  constructor(onSpeak, onWalk) {
-    this.id = Date.now();
+  constructor(id, onSpeak, onWalk) {
+    this.id = id;
     App.room = App.cable.subscriptions.create("RoomChannel", {
       connected: () => {},
       disconnected: () => {},

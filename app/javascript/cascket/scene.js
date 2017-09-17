@@ -13,15 +13,16 @@ export default class CascketScene extends enchant.Scene {
 
     let players = {};
 
-    let network = new Network((id, message) => {
+    this.id = Date.now();
+    let network = new Network(this.id, (id, message) => {
       console.log('speak:' + message);
     }, (id, x, y) => {
-
+      if (this.id == id) { return; }
       if (players[id] == undefined) {
         players[id] = new SutaWait();
         players[id].x = 750;
         players[id].y = 550;
-        this.addChild(players[id]);
+        map.addChild(players[id]);
       }
       console.log('walk:' + x + ", " + y);
       players[id].tl.tween({x: x, y: y, time: 100});
