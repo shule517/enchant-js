@@ -11,11 +11,20 @@ export default class CascketScene extends enchant.Scene {
     let map = new Map();
     this.addChild(map);
 
+    let players = {};
+
     let network = new Network((id, message) => {
       console.log('speak:' + message);
     }, (id, x, y) => {
+
+      if (players[id] == undefined) {
+        players[id] = new SutaWait();
+        players[id].x = 750;
+        players[id].y = 550;
+        this.addChild(players[id]);
+      }
       console.log('walk:' + x + ", " + y);
-      this.netSuta.tl.tween({x: x, y: y, time: 100});
+      players[id].tl.tween({x: x, y: y, time: 100});
     });
 
     let suta = new MySuta();
@@ -23,10 +32,10 @@ export default class CascketScene extends enchant.Scene {
     suta.y = 400;
     this.addChild(suta);
 
-    this.netSuta = new SutaWait();
-    map.addChild(this.netSuta);
-    this.netSuta.x = 10;
-    this.netSuta.y = 10;
+    // this.netSuta = new SutaWait();
+    // map.addChild(this.netSuta);
+    // this.netSuta.x = 10;
+    // this.netSuta.y = 10;
 
     this.addEventListener('enterframe', () => {
       if (enchant.Core.instance.input.a) {

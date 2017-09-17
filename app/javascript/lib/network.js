@@ -1,5 +1,6 @@
 export default class Network {
   constructor(onSpeak, onWalk) {
+    this.id = Date.now();
     App.room = App.cable.subscriptions.create("RoomChannel", {
       connected: () => {},
       disconnected: () => {},
@@ -31,11 +32,11 @@ export default class Network {
 
   speak(message) {
     console.log('send: speak');
-    App.room.perform('speak', {message: {type: 'speak', id: 1234, message: message}});
+    App.room.perform('speak', {message: {type: 'speak', id: this.id, message: message}});
   }
 
   walk(x, y) {
     console.log('send: walk');
-    App.room.perform('speak', {message: {type: 'walk', id: 1234, x: x, y: y}});
+    App.room.perform('speak', {message: {type: 'walk', id: this.id, x: x, y: y}});
   }
 }
