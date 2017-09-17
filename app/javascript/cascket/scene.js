@@ -1,6 +1,8 @@
 import { SutachooAnime, BigsightAnime, TengokuAnime, FlowerAnime, StoryAnime } from 'anime';
 import Map from './map';
 import MySuta from './my_suta';
+import { Network } from 'lib';
+import SutaWait from './suta_wait';
 
 export default class CascketScene extends enchant.Scene {
   constructor() {
@@ -9,10 +11,26 @@ export default class CascketScene extends enchant.Scene {
     let map = new Map();
     this.addChild(map);
 
+    let network = new Network((id, x, y) => {
+      // this.netSuta = new SutaWait();
+      // this.netSuta.x = x;
+      // this.netSuta.y = y;
+    }, (id, x, y) => {
+      this.netSuta.tl.tween({x: x, y: y, time: 100});
+      // this.netSuta.x = x;
+      // this.netSuta.y = y;
+    });
+    // let network = new Network(this.onSpeak, this.onWalk);
+
     let suta = new MySuta();
     suta.x = 400;
     suta.y = 400;
     this.addChild(suta);
+
+    this.netSuta = new SutaWait();
+    map.addChild(this.netSuta);
+    this.netSuta.x = 10;
+    this.netSuta.y = 10;
 
     this.addEventListener('enterframe', () => {
       if (enchant.Core.instance.input.a) {
@@ -26,6 +44,10 @@ export default class CascketScene extends enchant.Scene {
       console.log(e.localX + "," + e.localY);
 
       if (suta.isMoving()) { return; }
+
+      network.speak();
+      network.walk(e.localX, e.localY);
+      
       let diffX = map.x - (400 - e.localX);
       let diffY = (map.y - (540 - e.localY)) * 1.5;
       let diff = Math.sqrt(diffX * diffX + diffY * diffY);
@@ -43,4 +65,19 @@ export default class CascketScene extends enchant.Scene {
         .tween({y: 540 - e.localY, time: diff/3});
     });
   }
+
+  // onWalk(id, x, y) {
+  //   console.log("id:" + id + " x:" + x + " y:" + y);
+  //   // this.netSuta.x = x;
+  //   // this.netSuta.y = y;
+  //   // this.netSuta.tl.tween({x: x, y: y, time: 100});
+  //   let netSuta = new SutaWait();
+  //   map.addChild(netSuta);
+  //   netSuta.x = x;
+  //   netSuta.y = y;
+  // }
+
+  // onSpeak(id, message) {
+  //   console.log("id:" + id + " message:" + message);
+  // }
 }

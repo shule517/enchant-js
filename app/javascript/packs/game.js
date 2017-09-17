@@ -70,7 +70,7 @@ core.fps = 60;
 core.loadingScene = new LoadingScene();
 
 core.onload = () => {
-  let scene = new OpeningScene(); //OpeningScene();
+  let scene = new OpeningScene();
   core.pushScene(scene);
   scene.addEventListener('touchstart', (e) => {
     console.log("touchstart");
@@ -99,25 +99,3 @@ core.onload = () => {
 };
 
 core.start();
-
-
-
-
-
-
-class Network {
-  received(data) {
-    console.log("received:" + data['message']);
-  }
-}
-
-let network = new Network();
-
-App.room = App.cable.subscriptions.create("RoomChannel", {
-  connected: () => {},
-  disconnected: () => {},
-  received: (data) => { network.received(data); }
-  // received: (data) => { console.log(data['message']); }
-});
-
-App.room.perform('speak', {message: 'aaaaaaa'});
