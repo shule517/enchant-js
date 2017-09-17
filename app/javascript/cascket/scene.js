@@ -37,7 +37,7 @@ export default class CascketScene extends enchant.Scene {
       }
 
       console.log('walk:' + x + ", " + y);
-      player.tl.tween({x: x, y: y - 130, time: time});
+      player.tl.clear().tween({x: x, y: y - 130, time: time});
     });
 
     let suta = new MySuta();
