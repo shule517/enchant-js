@@ -11,16 +11,11 @@ export default class CascketScene extends enchant.Scene {
     let map = new Map();
     this.addChild(map);
 
-    let network = new Network((id, x, y) => {
-      // this.netSuta = new SutaWait();
-      // this.netSuta.x = x;
-      // this.netSuta.y = y;
+    let network = new Network((id, message) => {
+      console.log('speak:' + message);
     }, (id, x, y) => {
       this.netSuta.tl.tween({x: x, y: y, time: 100});
-      // this.netSuta.x = x;
-      // this.netSuta.y = y;
     });
-    // let network = new Network(this.onSpeak, this.onWalk);
 
     let suta = new MySuta();
     suta.x = 400;
