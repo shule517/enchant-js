@@ -25,6 +25,7 @@ export default class CascketScene extends enchant.Scene {
     map.addEventListener('touchstart', (e) => {
       console.log(e.localX + "," + e.localY);
 
+      if (suta.isMoving()) { return; }
       let diffX = map.x - (400 - e.localX);
       let diffY = (map.y - (540 - e.localY)) * 1.5;
       let diff = Math.sqrt(diffX * diffX + diffY * diffY);

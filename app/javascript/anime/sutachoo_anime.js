@@ -29,6 +29,10 @@ export default class SutachooAnime extends Anime {
     this.addChild(this.udon);
   }
 
+  isMoving() {
+    return this.moving;
+  }
+
   reset() {
     this.x = 0;
     this.y = 0;
