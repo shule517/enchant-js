@@ -5,6 +5,7 @@ export default class Network {
       disconnected: () => {},
       received: (receivedData) => {
         let data = receivedData['message'];
+        console.log('received:' + data.type);
         if (data.type == 'speak') {
           onSpeak(data.id, data.message);
         } else if (data.type == 'walk') {
@@ -29,10 +30,12 @@ export default class Network {
   // }
 
   speak(message) {
-    App.room.perform('speak', {message: {id: 1234, type: 'speak', message: message}});
+    console.log('send: speak');
+    App.room.perform('speak', {message: {type: 'speak', id: 1234, message: message}});
   }
 
   walk(x, y) {
-    App.room.perform('speak', {type: 'walk', message: {type: 'walk', id: 1234, x: x, y: y}});
+    console.log('send: walk');
+    App.room.perform('speak', {message: {type: 'walk', id: 1234, x: x, y: y}});
   }
 }

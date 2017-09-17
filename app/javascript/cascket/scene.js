@@ -14,6 +14,7 @@ export default class CascketScene extends enchant.Scene {
     let network = new Network((id, message) => {
       console.log('speak:' + message);
     }, (id, x, y) => {
+      console.log('walk:' + x + ", " + y);
       this.netSuta.tl.tween({x: x, y: y, time: 100});
     });
 
@@ -40,7 +41,6 @@ export default class CascketScene extends enchant.Scene {
 
       if (suta.isMoving()) { return; }
 
-      network.speak();
       network.walk(e.localX, e.localY);
       
       let diffX = map.x - (400 - e.localX);
