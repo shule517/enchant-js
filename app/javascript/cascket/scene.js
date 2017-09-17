@@ -3,6 +3,7 @@ import Map from './map';
 import MySuta from './my_suta';
 import { Network } from 'lib';
 import SutaWait from './suta_wait';
+import PlayerSuta from './player_suta';
 
 export default class CascketScene extends enchant.Scene {
   constructor() {
@@ -19,13 +20,24 @@ export default class CascketScene extends enchant.Scene {
     }, (id, x, y) => {
       if (this.id == id) { return; }
       if (players[id] == undefined) {
-        players[id] = new SutaWait();
+        players[id] = new PlayerSuta();
         players[id].x = 750;
         players[id].y = 550;
         map.addChild(players[id]);
       }
+      let player = players[id];
+
+      let diffX = player.x - x;
+      let diffY = (player.y - y) * 1.5;
+      let diff = Math.sqrt(diffX * diffX + diffY * diffY);
+      let time = Math.abs(diff)/2;
+      player.clear();
+      for (let i = 0; i < (time/43) - 1; i++) {
+        player.walking();
+      }
+
       console.log('walk:' + x + ", " + y);
-      players[id].tl.tween({x: x, y: y, time: 100});
+      player.tl.tween({x: x, y: y - 130, time: time});
     });
 
     let suta = new MySuta();
