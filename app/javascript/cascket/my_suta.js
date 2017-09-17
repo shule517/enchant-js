@@ -14,4 +14,8 @@ export default class MySuta extends Anime {
   walking() {
     this.suta.walking();
   }
+
+  clear() {
+    this.suta.clear();
+  }
 }

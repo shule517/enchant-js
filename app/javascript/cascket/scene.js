@@ -9,10 +9,6 @@ export default class CascketScene extends enchant.Scene {
     let map = new Map();
     this.addChild(map);
 
-    // map.addEventListener('touchstart', (e) => {
-    //   console.log(e.localX + " , " + e.localY);
-    // });
-
     let suta = new MySuta();
     suta.x = 400;
     suta.y = 400;
@@ -25,8 +21,9 @@ export default class CascketScene extends enchant.Scene {
       let diffY = (map.y - (540 - e.localY)) * 1.5;
       let diff = Math.sqrt(diffX * diffX + diffY * diffY);
 
-      let time = Math.abs(diffX)/2;
-      for (let i = 0; i < (time/43); i++) {
+      let time = Math.abs(diff)/2;
+      suta.clear();
+      for (let i = 0; i < (time/43) - 1; i++) {
         suta.walking();
       }
 
