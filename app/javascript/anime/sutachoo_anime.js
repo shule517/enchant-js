@@ -21,11 +21,21 @@ export default class SutachooAnime extends Anime {
     this.udon.scaleY = 0.7;
     this.udon.opacity = 0;
 
+    this.reset();
     this.addChild(this.body);
     this.addChild(this.right_foot);
     this.addChild(this.left_foot);
     this.addChild(this.tail);
     this.addChild(this.udon);
+  }
+
+  isMoving() {
+    return this.moving;
+  }
+
+  reset() {
+    this.x = 0;
+    this.y = 0;
   }
 
   jakajan() {
@@ -107,15 +117,19 @@ export default class SutachooAnime extends Anime {
     if (this.moving) { return; }
     // おっおっ → ちゅー！ちゅー！
     this.tl
-      .exec(() => { this.moving = true; })
-      .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .then(() => { this.soundChoo.play(); })
-      .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .then(() => { this.soundChoo.play(); })
-      .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .then(() => { this.moving = false; });
-  }
+    .exec(() => { this.moving = true; })
+    .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 1, easing: enchant.Easing.QUINT_EASEOUT })
+    .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 1, easing: enchant.Easing.QUINT_EASEOUT })
+
+    .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+    .then(() => { this.soundChoo.play(); })
+    .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+
+    .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+    .then(() => { this.soundChoo.play(); })
+    .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+    .then(() => { this.moving = false; });
+}
 
   left() {
     console.log("left this.moving:" + this.moving);
@@ -137,14 +151,26 @@ export default class SutachooAnime extends Anime {
       .exec(() => { this.moving = false; });
   }
 
+  clear() {
+    this.tl.clear();
+    this.body.tl.clear();
+    this.right_foot.tl.clear();
+    this.left_foot.tl.clear();
+    this.tail.tl.clear();
+    this.udon.tl.clear();
+  }
+
   walking() {
     // console.log("walking this.moving:" + this.moving);
     // if (this.moving) { return; }
+    this.reset();
     if (this.scaleX < 0) {
       this.tl
+        // .clear()
         .exec(() => {
           this.moving = true;
           this.right_foot.tl
+            // .clear()
             .rotateTo(-50, 13, enchant.Easing.CUBIC_EASEOUT)
             .delay(2)
             .rotateTo(20, 13, enchant.Easing.CUBIC_EASEOUT)
@@ -153,6 +179,7 @@ export default class SutachooAnime extends Anime {
         .and()
         .exec(() => {
           this.left_foot.tl
+            // .clear()
             .rotateTo(-56, 13, enchant.Easing.CUBIC_EASEOUT)
             .delay(2)
             .rotateTo(13, 13, enchant.Easing.CUBIC_EASEOUT)
@@ -161,6 +188,7 @@ export default class SutachooAnime extends Anime {
         .and()
         .exec(() => {
           this.tail.tl
+            // .clear()
             .rotateTo(-100, 13, enchant.Easing.CUBIC_EASEOUT)
             .delay(2)
             .rotateTo(-20, 13, enchant.Easing.CUBIC_EASEOUT)
@@ -175,9 +203,11 @@ export default class SutachooAnime extends Anime {
         .exec(() => { this.moving = false; });
     } else {
       this.tl
+        // .clear()
         .exec(() => {
           this.moving = true;
           this.right_foot.tl
+            .clear()
             .rotateTo(-50, 13, enchant.Easing.CUBIC_EASEOUT)
             .delay(2)
             .rotateTo(20, 13, enchant.Easing.CUBIC_EASEOUT)
@@ -186,6 +216,7 @@ export default class SutachooAnime extends Anime {
         .and()
         .exec(() => {
           this.left_foot.tl
+            // .clear()
             .rotateTo(-56, 13, enchant.Easing.CUBIC_EASEOUT)
             .delay(2)
             .rotateTo(13, 13, enchant.Easing.CUBIC_EASEOUT)
@@ -194,6 +225,7 @@ export default class SutachooAnime extends Anime {
         .and()
         .exec(() => {
           this.tail.tl
+            // .clear()
             .rotateTo(-100, 13, enchant.Easing.CUBIC_EASEOUT)
             .delay(2)
             .rotateTo(-20, 13, enchant.Easing.CUBIC_EASEOUT)
