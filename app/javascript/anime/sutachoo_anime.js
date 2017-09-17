@@ -113,15 +113,19 @@ export default class SutachooAnime extends Anime {
     if (this.moving) { return; }
     // おっおっ → ちゅー！ちゅー！
     this.tl
-      .exec(() => { this.moving = true; })
-      .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .then(() => { this.soundChoo.play(); })
-      .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .then(() => { this.soundChoo.play(); })
-      .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
-      .then(() => { this.moving = false; });
-  }
+    .exec(() => { this.moving = true; })
+    .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 1, easing: enchant.Easing.QUINT_EASEOUT })
+    .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 1, easing: enchant.Easing.QUINT_EASEOUT })
+
+    .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+    .then(() => { this.soundChoo.play(); })
+    .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+
+    .tween({ y: this.y - 60, scaleX: this.scaleX * 1.5, scaleY: this.scaleY * 1.5, time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+    .then(() => { this.soundChoo.play(); })
+    .tween({ y: this.y,      scaleX: this.scaleX,       scaleY: this.scaleY,       time: 10, easing: enchant.Easing.QUINT_EASEOUT })
+    .then(() => { this.moving = false; });
+}
 
   left() {
     console.log("left this.moving:" + this.moving);

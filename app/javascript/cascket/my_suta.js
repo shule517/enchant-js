@@ -18,4 +18,12 @@ export default class MySuta extends Anime {
   clear() {
     this.suta.clear();
   }
+
+  jakajan() {
+    this.suta.jakajan();
+  }
+
+  oxox() {
+    this.suta.oxox();
+  }
 }

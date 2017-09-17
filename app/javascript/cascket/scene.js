@@ -14,6 +14,14 @@ export default class CascketScene extends enchant.Scene {
     suta.y = 400;
     this.addChild(suta);
 
+    this.addEventListener('enterframe', () => {
+      if (enchant.Core.instance.input.a) {
+        suta.oxox();
+      } else if (enchant.Core.instance.input.b) {
+        suta.jakajan();
+      }
+    });
+
     map.addEventListener('touchstart', (e) => {
       console.log(e.localX + "," + e.localY);
 
