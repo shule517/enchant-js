@@ -1,5 +1,5 @@
 export default class Network {
-  constructor(id, onSpeak, onWalk) {
+  constructor(id, onSpeak, onWalk, onOxOx, onJakakan) {
     this.id = id;
     App.room = App.cable.subscriptions.create("RoomChannel", {
       connected: () => {},
@@ -11,6 +11,10 @@ export default class Network {
           onSpeak(data.id, data.message);
         } else if (data.type == 'walk') {
           onWalk(data.id, data.x, data.y);
+        } else if (data.type == 'oxox') {
+          onOxOx(data.id);
+        } else if (data.type == 'jakajan') {
+          onJakakan(data.id);
         }
             // this.received(data);
       }
@@ -38,5 +42,15 @@ export default class Network {
   walk(x, y) {
     console.log('send: walk');
     App.room.perform('speak', {message: {type: 'walk', id: this.id, x: x, y: y}});
+  }
+
+  jakajan() {
+    console.log('send: jakajan');
+    App.room.perform('speak', {message: {type: 'jakajan', id: this.id}});
+  }
+
+  oxox() {
+    console.log('send: oxox');
+    App.room.perform('speak', {message: {type: 'oxox', id: this.id}});
   }
 }

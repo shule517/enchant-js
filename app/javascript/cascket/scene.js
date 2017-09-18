@@ -16,8 +16,10 @@ export default class CascketScene extends enchant.Scene {
 
     this.id = Date.now();
     let network = new Network(this.id, (id, message) => {
+      // OnSpeak
       console.log('speak:' + message);
     }, (id, x, y) => {
+      // OnWalk
       if (this.id == id) { return; }
       if (players[id] == undefined) {
         players[id] = new PlayerSuta();
@@ -38,6 +40,28 @@ export default class CascketScene extends enchant.Scene {
 
       console.log('walk:' + x + ", " + y);
       player.tl.clear().tween({x: x, y: y - 130, time: time});
+    }, (id) => {
+      // OnOxOx
+      if (this.id == id) { return; }
+      if (players[id] == undefined) {
+        players[id] = new PlayerSuta();
+        players[id].x = 750;
+        players[id].y = 550;
+        map.addChild(players[id]);
+      }
+      let player = players[id];
+      player.oxox();
+    }, (id) => {
+      // OnJan
+      if (this.id == id) { return; }
+      if (players[id] == undefined) {
+        players[id] = new PlayerSuta();
+        players[id].x = 750;
+        players[id].y = 550;
+        map.addChild(players[id]);
+      }
+      let player = players[id];
+      player.jakajan();
     });
 
     let suta = new MySuta();
@@ -53,8 +77,10 @@ export default class CascketScene extends enchant.Scene {
     this.addEventListener('enterframe', () => {
       if (enchant.Core.instance.input.a) {
         suta.oxox();
+        network.oxox();
       } else if (enchant.Core.instance.input.b) {
         suta.jakajan();
+        network.jakajan();
       }
     });
 
