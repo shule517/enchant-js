@@ -22,9 +22,10 @@ export default class CascketScene extends enchant.Scene {
     this.id = Date.now();
     let network = new Network(this.id, (id, message) => {
       // OnSpeak
-      console.log('speak:' + message);
+      console.log('onSpeak:' + message);
     }, (id, x, y) => {
       // OnWalk
+      console.log('OnWalk id:' + id +' x:' + x + ' y:' + y);
       if (this.id == id) { return; }
       if (players[id] == undefined) {
         players[id] = new SutaPlayer();
@@ -43,10 +44,10 @@ export default class CascketScene extends enchant.Scene {
         player.walking();
       }
 
-      console.log('walk:' + x + ", " + y);
       player.tl.clear().tween({x: x, y: y - 130, time: time});
     }, (id) => {
       // OnOxOx
+      console.log('OnOxOx id:' + id);
       if (this.id == id) { return; }
       if (players[id] == undefined) {
         players[id] = new SutaPlayer();
@@ -58,6 +59,7 @@ export default class CascketScene extends enchant.Scene {
       player.oxox();
     }, (id) => {
       // OnJan
+      console.log('OnJan id:' + id);
       if (this.id == id) { return; }
       if (players[id] == undefined) {
         players[id] = new SutaPlayer();
@@ -69,6 +71,7 @@ export default class CascketScene extends enchant.Scene {
       player.jakajan();
     }, (id, x, y) => {
       // OnHello
+      console.log('OnHello id:' + id + ' x:' + x + ' y:' + y);
       if (this.id == id) { return; }
       if (players[id] == undefined) {
         players[id] = new SutaPlayer();
@@ -79,6 +82,7 @@ export default class CascketScene extends enchant.Scene {
       network.add(me.x, me.y);
     }, (id, x, y) => {
       // OnAdd
+      console.log('OnAdd id:' + id + ' x:' + x + ' y:' + y);
       if (this.id == id) { return; }
       if (players[id] == undefined) {
         players[id] = new SutaPlayer();
@@ -88,16 +92,13 @@ export default class CascketScene extends enchant.Scene {
       }
     }, (id) => {
       // OnDelete
+      console.log('OnDelete id:' + id);
       if (this.id == id) { return; }
       if (players[id] != undefined) {
+        console.log('if (players[id] != undefined)');
         map.removeChild(players[id]);
       }
     });
-
-    // this.netSuta = new SutaWait();
-    // map.addChild(this.netSuta);
-    // this.netSuta.x = 10;
-    // this.netSuta.y = 10;
 
     this.addEventListener('enterframe', () => {
       if (enchant.Core.instance.input.a) {
