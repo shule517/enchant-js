@@ -79,7 +79,7 @@ export default class CascketScene extends enchant.Scene {
         players[id].y = y;
         map.addChild(players[id]);
       }
-      network.add(map.x, map.y);
+      network.add(map.x * -1 + 400, map.y * -1 + 540 - 135);
     }, (id, x, y) => {
       // OnAdd
       console.log('OnAdd id:' + id + ' x:' + x + ' y:' + y);
