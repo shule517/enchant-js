@@ -76,9 +76,11 @@ export default class CascketScene extends enchant.Scene {
 
     this.addEventListener('enterframe', () => {
       if (enchant.Core.instance.input.a) {
+        if (suta.isMoving()) { return; }
         suta.oxox();
         network.oxox();
       } else if (enchant.Core.instance.input.b) {
+        if (suta.isMoving()) { return; }
         suta.jakajan();
         network.jakajan();
       }
@@ -87,7 +89,7 @@ export default class CascketScene extends enchant.Scene {
     map.addEventListener('touchstart', (e) => {
       console.log(e.localX + "," + e.localY);
 
-      if (suta.isMoving()) { return; }
+      // if (suta.isMoving()) { return; }
 
       network.walk(e.localX, e.localY);
       

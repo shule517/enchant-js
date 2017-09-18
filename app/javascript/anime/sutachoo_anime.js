@@ -33,13 +33,9 @@ export default class SutachooAnime extends Anime {
     return this.moving;
   }
 
-  reset() {
-    this.x = 0;
-    this.y = 0;
-  }
-
   jakajan() {
-    if (this.moving) { return; }
+    // if (this.isMoving()) { return; }
+    this.reset();
     this.tl
       .exec(() => { this.moving = true; this.soundJakajan.play(); } )
       // ぐるぐる
@@ -114,7 +110,8 @@ export default class SutachooAnime extends Anime {
   }
 
   oxox() {
-    if (this.moving) { return; }
+    // if (this.isMoving()) { return; }
+    this.clear();
     // おっおっ → ちゅー！ちゅー！
     this.tl
     .exec(() => { this.moving = true; })
@@ -133,7 +130,7 @@ export default class SutachooAnime extends Anime {
 
   left() {
     console.log("left this.moving:" + this.moving);
-    // if (this.moving) { return; }
+    // if (this.isMoving()) { return; }
     this.tl
       // .exec(() => { this.moving = true; })
       .tween({ scaleX: this.scaleX * -1, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
@@ -143,7 +140,7 @@ export default class SutachooAnime extends Anime {
 
   right() {
     // console.log("right this.moving:" + this.moving);
-    // if (this.moving) { return; }
+    // if (this.isMoving()) { return; }
     this.tl
       .exec(() => { this.moving = true; })
       .tween({ scaleX: this.scaleX, time: 20, easing: enchant.Easing.CUBIC_EASEOUT })
@@ -151,19 +148,44 @@ export default class SutachooAnime extends Anime {
       .exec(() => { this.moving = false; });
   }
 
+  reset() {
+    this.x = 0;
+    this.y = 0;
+  }
+
   clear() {
+    this.x = 0;
+    this.y = 0;
+    if (this.scaleX < 0) {
+      this.scaleX = -0.6;      
+    } else {
+      this.scaleX = 0.6;      
+    }
+    this.scaleY = 0.6;
     this.tl.clear();
     this.body.tl.clear();
     this.right_foot.tl.clear();
     this.left_foot.tl.clear();
     this.tail.tl.clear();
     this.udon.tl.clear();
+
+    this.body.scaleX = 1;
+    this.right_foot.scaleX = 1;
+    this.left_foot.scaleX = 1;
+    this.tail.scaleX = 1;
+    this.udon.scaleX = 1;
+
+    this.body.scaleY = 1;
+    this.right_foot.scaleY = 1;
+    this.left_foot.scaleY = 1;
+    this.tail.scaleY = 1;
+    this.udon.scaleY = 1;
   }
 
   walking() {
     // console.log("walking this.moving:" + this.moving);
-    // if (this.moving) { return; }
-    this.reset();
+    // if (this.isMoving()) { return; }
+    // this.clear();
     if (this.scaleX < 0) {
       this.tl
         // .clear()
