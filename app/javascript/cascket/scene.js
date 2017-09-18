@@ -1,9 +1,9 @@
 import { SutachooAnime, BigsightAnime, TengokuAnime, FlowerAnime, StoryAnime } from 'anime';
 import Map from './map';
-import MySuta from './my_suta';
 import { Network } from 'lib';
+import SutaMe from './suta_me';
 import SutaWait from './suta_wait';
-import PlayerSuta from './player_suta';
+import SutaPlayer from './suta_player';
 
 export default class CascketScene extends enchant.Scene {
   constructor() {
@@ -22,7 +22,7 @@ export default class CascketScene extends enchant.Scene {
       // OnWalk
       if (this.id == id) { return; }
       if (players[id] == undefined) {
-        players[id] = new PlayerSuta();
+        players[id] = new SutaPlayer();
         players[id].x = 750;
         players[id].y = 550;
         map.addChild(players[id]);
@@ -44,7 +44,7 @@ export default class CascketScene extends enchant.Scene {
       // OnOxOx
       if (this.id == id) { return; }
       if (players[id] == undefined) {
-        players[id] = new PlayerSuta();
+        players[id] = new SutaPlayer();
         players[id].x = 750;
         players[id].y = 550;
         map.addChild(players[id]);
@@ -55,7 +55,7 @@ export default class CascketScene extends enchant.Scene {
       // OnJan
       if (this.id == id) { return; }
       if (players[id] == undefined) {
-        players[id] = new PlayerSuta();
+        players[id] = new SutaPlayer();
         players[id].x = 750;
         players[id].y = 550;
         map.addChild(players[id]);
@@ -64,7 +64,7 @@ export default class CascketScene extends enchant.Scene {
       player.jakajan();
     });
 
-    let suta = new MySuta();
+    let suta = new SutaMe();
     suta.x = 400;
     suta.y = 400;
     this.addChild(suta);

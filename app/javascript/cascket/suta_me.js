@@ -1,7 +1,7 @@
 import { Anime } from 'lib';
 import { SutachooAnime } from 'anime';
 
-export default class PlayerSuta extends Anime {
+export default class SutaMe extends Anime {
   constructor() {
     super();
 
