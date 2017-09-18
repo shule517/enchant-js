@@ -9,3 +9,5 @@ export { default as GrassAnime } from './grass_anime';
 export { default as KirikabuAnime } from './kirikabu_anime';
 export { default as TreeAnime } from './tree_anime';
 export { default as KanbanAnime } from './kanban_anime';
+export { default as ButtonChooAnime } from './button_choo_anime';
+export { default as ButtonJanAnime } from './button_jan_anime';

@@ -1,4 +1,4 @@
-import { SutachooAnime, BigsightAnime, TengokuAnime, FlowerAnime, StoryAnime } from 'anime';
+import { SutachooAnime, BigsightAnime, TengokuAnime, FlowerAnime, StoryAnime, ButtonChooAnime, ButtonJanAnime} from 'anime';
 import Map from './map';
 import { Network } from 'lib';
 import SutaMe from './suta_me';
@@ -114,6 +114,31 @@ export default class CascketScene extends enchant.Scene {
       }
     });
 
+    let buttonChoo = new ButtonChooAnime();
+    buttonChoo.x = 20;
+    buttonChoo.y = 650;
+    buttonChoo.scaleX = 0.5;
+    buttonChoo.scaleY = 0.5;
+    this.addChild(buttonChoo);
+    let buttonJan = new ButtonJanAnime();
+    buttonJan.x = 140;
+    buttonJan.y = 650;
+    buttonJan.scaleX = 0.5;
+    buttonJan.scaleY = 0.5;
+    this.addChild(buttonJan);
+
+    buttonChoo.addEventListener('touchstart', (e) => {
+      if (me.isMoving() || me.isWalking()) { return; }
+      me.oxox();
+      network.oxox();
+    });
+    buttonJan.addEventListener('touchstart', (e) => {
+      if (me.isMoving() || me.isWalking()) { return; }
+      let rotation = me.rand(360);
+      let isUdon = (me.rand(0) == 0);
+      me.jakajan(rotation, isUdon);
+      network.jakajan(rotation, isUdon);
+    });
     map.addEventListener('touchstart', (e) => {
       console.log(e.localX + "," + e.localY);
 

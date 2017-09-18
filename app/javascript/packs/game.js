@@ -64,6 +64,8 @@ core.preload('img/Quiz-Results.mp3');
 core.preload('img/choo.mp3');
 
 core.preload('img/loading_suta.png');
+core.preload('img/choo.png');
+core.preload('img/jan.png');
 
 core.fps = 60;
 
