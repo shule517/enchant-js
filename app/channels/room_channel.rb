@@ -1,8 +1,8 @@
 class RoomChannel < ApplicationCable::Channel
   def subscribed
     stream_from "room_channel"
-    @id = Time.now
-    puts "subscribed:#{@id}"
+    # @id = Time.now
+    # puts "subscribed:#{@id}"
     # p cookies
     p self
   end
@@ -19,9 +19,12 @@ class RoomChannel < ApplicationCable::Channel
   def speak(data)
     ActionCable.server.broadcast 'room_channel', message: data['message']
 
-    if (data['message']['type'] == 'hello')
+    if data['message']['type'] == 'hello'
       @id = data['message']['id']
       puts "my id is " + @id
+    else
+      puts "my id is no"
+      puts data
     end
   end
 end
