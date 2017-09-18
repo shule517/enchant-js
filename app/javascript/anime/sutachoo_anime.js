@@ -17,9 +17,9 @@ export default class SutachooAnime extends Anime {
     this.right_foot = this.createSprite(16, 146, 35, 35, 28, 8, 'img/suta/suta_right_foot.png');
     this.left_foot = this.createSprite(75, 153, 35, 35, 22, 6, 'img/suta/suta_left_foot.png');
     this.tail = this.createSprite(122, 125, 60, 35, 8, 10, 'img/suta/suta_tail.png');
-    this.udon = this.createSprite(-25, -200, 250, 250, 0, 0, 'img/stamp9.png');
-    this.udon.scaleX = 0.7;
-    this.udon.scaleY = 0.7;
+    this.udon = this.createSprite(-50, -250, 250, 250, 0, 0, 'img/stamp9.png');
+    this.udon.scaleX = 0.9;
+    this.udon.scaleY = 0.9;
     this.udon.opacity = 0;
 
     this.reset();

@@ -108,7 +108,7 @@ export default class CascketScene extends enchant.Scene {
       } else if (enchant.Core.instance.input.b) {
         if (me.isMoving() || me.isWalking()) { return; }
         let rotation = me.rand(360);
-        let isUdon = (me.rand(10) == 0);
+        let isUdon = (me.rand(0) == 0);
         me.jakajan(rotation, isUdon);
         network.jakajan(rotation, isUdon);
       }
