@@ -136,7 +136,7 @@ export default class CascketScene extends enchant.Scene {
         .tween({y: 540 - e.localY, time: diff/3});
     });
 
-    this.tl.delay(10).exec(() => {
+    this.tl.delay(100).exec(() => {
       network.hello(420, 460);
     });
   }
