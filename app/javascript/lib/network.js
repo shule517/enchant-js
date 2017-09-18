@@ -1,5 +1,5 @@
 export default class Network {
-  constructor(id, onSpeak, onWalk, onOxOx, onJakakan) {
+  constructor(id, onSpeak, onWalk, onOxOx, onJakakan, onHello, onAdd, onDelete) {
     this.id = id;
     App.room = App.cable.subscriptions.create("RoomChannel", {
       connected: () => {},
@@ -15,24 +15,19 @@ export default class Network {
           onOxOx(data.id);
         } else if (data.type == 'jakajan') {
           onJakakan(data.id);
+        } else if (data.type == 'hello') {
+          onHello(data.id, data.x, data.y);
+        } else if (data.type == 'add') {
+          onAdd(data.id, data.x, data.y);
+        } else if (data.type == 'delete') {
+          onDelete(data.id);
         }
             // this.received(data);
       }
     });
     // App.room.perform('speak', {message: 'aaaaaaa'});
     console.log('Network');
-    this.onSpeak = onSpeak;
-    this.onWalk = onWalk;
   }
-
-  // received(receivedData) {
-  //   let data = receivedData['message'];
-  //   if (data.type == 'speak') {
-  //     this.onSpeak(data.id, data.message);
-  //   } else if (data.type == 'walk') {
-  //     this.onWalk(data.id, data.x, data.y);
-  //   }
-  // }
 
   speak(message) {
     console.log('send: speak');
@@ -52,5 +47,15 @@ export default class Network {
   oxox() {
     console.log('send: oxox');
     App.room.perform('speak', {message: {type: 'oxox', id: this.id}});
+  }
+
+  add(x, y) {
+    console.log('send: add');
+    App.room.perform('speak', {message: {type: 'add', id: this.id, x: x, y: y}});
+  }
+
+  hello(x, y) {
+    console.log('send: hello');
+    App.room.perform('speak', {message: {type: 'hello', id: this.id, x: x, y: y}});
   }
 }

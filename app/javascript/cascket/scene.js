@@ -12,6 +12,11 @@ export default class CascketScene extends enchant.Scene {
     let map = new Map();
     this.addChild(map);
 
+    let me = new SutaMe();
+    me.x = 400;
+    me.y = 400;
+    this.addChild(me);
+
     let players = {};
 
     this.id = Date.now();
@@ -23,8 +28,8 @@ export default class CascketScene extends enchant.Scene {
       if (this.id == id) { return; }
       if (players[id] == undefined) {
         players[id] = new SutaPlayer();
-        players[id].x = 750;
-        players[id].y = 550;
+        players[id].x = 420;
+        players[id].y = 460;
         map.addChild(players[id]);
       }
       let player = players[id];
@@ -56,18 +61,38 @@ export default class CascketScene extends enchant.Scene {
       if (this.id == id) { return; }
       if (players[id] == undefined) {
         players[id] = new SutaPlayer();
-        players[id].x = 750;
-        players[id].y = 550;
+        players[id].x = 500;
+        players[id].y = 500;
         map.addChild(players[id]);
       }
       let player = players[id];
       player.jakajan();
+    }, (id, x, y) => {
+      // OnHello
+      if (this.id == id) { return; }
+      if (players[id] == undefined) {
+        players[id] = new SutaPlayer();
+        players[id].x = x;
+        players[id].y = y;
+        map.addChild(players[id]);
+      }
+      network.add(me.x, me.y);
+    }, (id, x, y) => {
+      // OnAdd
+      if (this.id == id) { return; }
+      if (players[id] == undefined) {
+        players[id] = new SutaPlayer();
+        players[id].x = x;
+        players[id].y = y;
+        map.addChild(players[id]);
+      }
+    }, (id) => {
+      // OnDelete
+      if (this.id == id) { return; }
+      if (players[id] != undefined) {
+        map.removeChild(players[id]);
+      }
     });
-
-    let me = new SutaMe();
-    me.x = 400;
-    me.y = 400;
-    this.addChild(me);
 
     // this.netSuta = new SutaWait();
     // map.addChild(this.netSuta);
@@ -108,6 +133,10 @@ export default class CascketScene extends enchant.Scene {
         .tween({x: 400 - e.localX, time: diff/3})
         .and()
         .tween({y: 540 - e.localY, time: diff/3});
+    });
+
+    this.tl.delay(10).exec(() => {
+      network.hello(420, 460);
     });
   }
 

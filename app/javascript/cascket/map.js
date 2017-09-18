@@ -43,15 +43,15 @@ export default class Map extends Anime {
     desk.scaleY = 0.3;
     this.addChild(desk);
 
-    for (let x = 0; x < 2; x++) {
-      for (let y = 0; y < 4; y++) {
-        let suta = new SutaWait();
-        suta.x = 400 + 100 * x;
-        suta.y = 550 + 50 * y;
-        // suta.scaleX = 0.6;
-        // suta.scaleY = 0.6;
-        this.addChild(suta);
-      }
-    }
+    // for (let x = 0; x < 2; x++) {
+    //   for (let y = 0; y < 4; y++) {
+    //     let suta = new SutaWait();
+    //     suta.x = 400 + 100 * x;
+    //     suta.y = 550 + 50 * y;
+    //     // suta.scaleX = 0.6;
+    //     // suta.scaleY = 0.6;
+    //     this.addChild(suta);
+    //   }
+    // }
   }
 }
