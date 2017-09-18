@@ -19,6 +19,10 @@ export default class SutaMe extends Anime {
     return this.suta.isMoving();
   }
 
+  isWalking() {
+    return this.suta.isWalking();
+  }
+
   clear() {
     this.suta.clear();
   }

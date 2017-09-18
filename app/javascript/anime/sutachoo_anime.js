@@ -11,6 +11,7 @@ export default class SutachooAnime extends Anime {
     this.originX = 70;
     this.originY = 150;
     this.moving = false;
+    this.walkingFlag = false;
 
     this.body = this.createSprite(0, 0, 140, 170, 70, 80, 'img/suta/suta_body.png');
     this.right_foot = this.createSprite(16, 146, 35, 35, 28, 8, 'img/suta/suta_right_foot.png');
@@ -31,6 +32,10 @@ export default class SutachooAnime extends Anime {
 
   isMoving() {
     return this.moving;
+  }
+
+  isWalking() {
+    return this.walkingFlag;
   }
 
   jakajan() {
@@ -156,6 +161,7 @@ export default class SutachooAnime extends Anime {
   clear() {
     this.x = 0;
     this.y = 0;
+    this.rotation = 0;
     if (this.scaleX < 0) {
       this.scaleX = -0.6;      
     } else {
@@ -190,7 +196,7 @@ export default class SutachooAnime extends Anime {
       this.tl
         // .clear()
         .exec(() => {
-          this.moving = true;
+          this.walkingFlag = true;
           this.right_foot.tl
             // .clear()
             .rotateTo(-50, 13, enchant.Easing.CUBIC_EASEOUT)
@@ -215,19 +221,21 @@ export default class SutachooAnime extends Anime {
             .delay(2)
             .rotateTo(-20, 13, enchant.Easing.CUBIC_EASEOUT)
             .delay(15)
-            .then(() => { this.moving = false; });
+            .then(() => { this.walkingFlag = false; });
         })
         .and()
         .tween({ rotation: 8 * 1, y: this.y - 30, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
         .delay(2)
         .tween({ rotation: 0,     y: this.y,      time: 13, easing: enchant.Easing.QUINT_EASEOUT })
         .delay(15)
-        .exec(() => { this.moving = false; });
+        .exec(() => {
+          this.walkingFlag = false;
+        });
     } else {
       this.tl
         // .clear()
         .exec(() => {
-          this.moving = true;
+          this.walkingFlag = true;
           this.right_foot.tl
             .clear()
             .rotateTo(-50, 13, enchant.Easing.CUBIC_EASEOUT)
@@ -252,14 +260,16 @@ export default class SutachooAnime extends Anime {
             .delay(2)
             .rotateTo(-20, 13, enchant.Easing.CUBIC_EASEOUT)
             .delay(15)
-            .then(() => { this.moving = false; });
+            .then(() => { this.walkingFlag = false; });
         })
         .and()
         .tween({ rotation: 8 * -1, y: this.y - 30, time: 13, easing: enchant.Easing.QUINT_EASEOUT })
         .delay(2)
         .tween({ rotation: 0,      y: this.y,      time: 13, easing: enchant.Easing.QUINT_EASEOUT })
         .delay(15)
-        .exec(() => { this.moving = false; });
+        .exec(() => {
+          this.walkingFlag = false;
+        });
     }
   }
 }

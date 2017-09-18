@@ -64,10 +64,10 @@ export default class CascketScene extends enchant.Scene {
       player.jakajan();
     });
 
-    let suta = new SutaMe();
-    suta.x = 400;
-    suta.y = 400;
-    this.addChild(suta);
+    let me = new SutaMe();
+    me.x = 400;
+    me.y = 400;
+    this.addChild(me);
 
     // this.netSuta = new SutaWait();
     // map.addChild(this.netSuta);
@@ -76,12 +76,12 @@ export default class CascketScene extends enchant.Scene {
 
     this.addEventListener('enterframe', () => {
       if (enchant.Core.instance.input.a) {
-        if (suta.isMoving()) { return; }
-        suta.oxox();
+        if (me.isMoving() || me.isWalking()) { return; }
+        me.oxox();
         network.oxox();
       } else if (enchant.Core.instance.input.b) {
-        if (suta.isMoving()) { return; }
-        suta.jakajan();
+        if (me.isMoving() || me.isWalking()) { return; }
+        me.jakajan();
         network.jakajan();
       }
     });
@@ -89,7 +89,7 @@ export default class CascketScene extends enchant.Scene {
     map.addEventListener('touchstart', (e) => {
       console.log(e.localX + "," + e.localY);
 
-      // if (suta.isMoving()) { return; }
+      if (me.isMoving()) { return; }
 
       network.walk(e.localX, e.localY);
       
@@ -98,9 +98,9 @@ export default class CascketScene extends enchant.Scene {
       let diff = Math.sqrt(diffX * diffX + diffY * diffY);
 
       let time = Math.abs(diff)/2;
-      suta.clear();
+      me.clear();
       for (let i = 0; i < (time/43) - 1; i++) {
-        suta.walking();
+        me.walking();
       }
 
       map.tl
