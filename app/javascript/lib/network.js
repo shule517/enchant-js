@@ -21,6 +21,8 @@ export default class Network {
           onAdd(data.id, data.x, data.y);
         } else if (data.type == 'delete') {
           onDelete(data.id);
+        } else {
+          console.log('undefined message: ' + data);
         }
             // this.received(data);
       }
