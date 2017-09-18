@@ -71,7 +71,7 @@ export default class MySutachoo extends Anime {
     this.sutachoo.oxox();
   }
 
-  jakajan() {
-    this.sutachoo.jakajan();
+  jakajan(rotation, isUdon) {
+    this.sutachoo.jakajan(rotation, isUdon);
   }
 }

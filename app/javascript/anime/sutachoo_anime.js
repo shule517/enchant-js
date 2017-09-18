@@ -38,7 +38,7 @@ export default class SutachooAnime extends Anime {
     return this.walkingFlag;
   }
 
-  jakajan() {
+  jakajan(rotation, isUdon) {
     // if (this.isMoving()) { return; }
     this.reset();
     this.tl
@@ -81,11 +81,11 @@ export default class SutachooAnime extends Anime {
       .then(() => {
         this.tail.scaleX = 2;
         this.tail.scaleY = 2;
-        this.tail.rotate(this.rand(360));
+        this.tail.rotate(this.rand(rotation));
       })
       // たまに うどんが出る
       .then(() => {
-        if (this.rand(10) == 0) {
+        if (isUdon) {
           this.udon.opacity = 1;
         }
       })
@@ -186,6 +186,7 @@ export default class SutachooAnime extends Anime {
     this.left_foot.scaleY = 1;
     this.tail.scaleY = 1;
     this.udon.scaleY = 1;
+    this.udon.opacity = 0;
   }
 
   walking() {

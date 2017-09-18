@@ -14,7 +14,7 @@ export default class Network {
         } else if (data.type == 'oxox') {
           onOxOx(data.id);
         } else if (data.type == 'jakajan') {
-          onJakakan(data.id);
+          onJakakan(data.id, data.rotation, data.isUdon);
         } else if (data.type == 'hello') {
           onHello(data.id, data.x, data.y);
         } else if (data.type == 'add') {
@@ -41,9 +41,9 @@ export default class Network {
     App.room.perform('speak', {message: {type: 'walk', id: this.id, x: x, y: y}});
   }
 
-  jakajan() {
+  jakajan(rotation, isUdon) {
     console.log('send: jakajan');
-    App.room.perform('speak', {message: {type: 'jakajan', id: this.id}});
+    App.room.perform('speak', {message: {type: 'jakajan', id: this.id, rotation: rotation, isUdon: isUdon}});
   }
 
   oxox() {

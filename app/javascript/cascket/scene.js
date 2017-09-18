@@ -57,9 +57,9 @@ export default class CascketScene extends enchant.Scene {
       }
       let player = players[id];
       player.oxox();
-    }, (id) => {
+    }, (id, rotation, isUdon) => {
       // OnJan
-      console.log('OnJan id:' + id);
+      console.log('OnJan id:' + id + "rotation:" + rotation + " isUdon:" + isUdon);
       if (this.id == id) { return; }
       if (players[id] == undefined) {
         players[id] = new SutaPlayer();
@@ -68,7 +68,7 @@ export default class CascketScene extends enchant.Scene {
         map.addChild(players[id]);
       }
       let player = players[id];
-      player.jakajan();
+      player.jakajan(rotation, isUdon);
     }, (id, x, y) => {
       // OnHello
       console.log('OnHello id:' + id + ' x:' + x + ' y:' + y);
@@ -107,8 +107,10 @@ export default class CascketScene extends enchant.Scene {
         network.oxox();
       } else if (enchant.Core.instance.input.b) {
         if (me.isMoving() || me.isWalking()) { return; }
-        me.jakajan();
-        network.jakajan();
+        let rotation = me.rand(360);
+        let isUdon = (me.rand(10) == 0);
+        me.jakajan(rotation, isUdon);
+        network.jakajan(rotation, isUdon);
       }
     });
 

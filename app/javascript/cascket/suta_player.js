@@ -27,8 +27,8 @@ export default class SutaPlayer extends Anime {
     this.suta.clear();
   }
 
-  jakajan() {
-    this.suta.jakajan();
+  jakajan(rotation, isUdon) {
+    this.suta.jakajan(rotation, isUdon);
   }
 
   oxox() {
