@@ -1,7 +1,7 @@
 import { SutachooAnime, BigsightAnime, TengokuAnime, FlowerAnime, StoryAnime } from 'anime';
 import MySutachoo from './mysutachoo';
 import Map from './map';
-import CascketScene from '../packs/cascket/scene';
+import { CascketScene } from 'cascket';
 
 export default class OpeningScene extends enchant.Scene {
   constructor() {
